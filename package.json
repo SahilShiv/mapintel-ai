@@ -1,0 +1,10 @@
+{
+  "name": "mapintel-ai",
+  "private": true,
+  "version": "1.0.0",
+  "description": "MapIntel AI - Google Maps Competitor Update Intelligence Platform",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "dev": "cd frontend && npm run dev"
+  }
+}
