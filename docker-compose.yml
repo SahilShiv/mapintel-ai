@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./intelligence_tool.db
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - GROK_API_KEY=${GROK_API_KEY}
+      - SCRAPER_HEADLESS=true
+      - FRONTEND_URL=http://localhost:5173
+    volumes:
+      - ./data:/app/data
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api
+    depends_on:
+      - backend

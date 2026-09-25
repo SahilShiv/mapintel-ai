@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: googlemap-intelligence-backend
+    env: python
+    buildCommand: "pip install -r backend/requirements.txt"
+    startCommand: "python -m backend.app.seed_demo && uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./intelligence_tool.db
+      - key: SCRAPER_HEADLESS
+        value: "true"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROK_API_KEY
+        sync: false
